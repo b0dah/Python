@@ -40,15 +40,6 @@ for pair in pairsToDefine:
 		print(pair[0], "-", pair[1], "	2")
 	else:
 		print(pair[0], "-", pair[1], "	0")
-	
-#for key, value in familyTreeDict.items():
-#	if isAncestor(familyTreeDict, key, value):
-#		print(key, "-", value, "	1")
-#	elif isAncestor(familyTreeDict, value, key):
-#		print(key, "-", value, "	2")
-#	else:
-#		print(key, "-", value, "	0")
-#
 
 	
 
