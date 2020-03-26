@@ -1,0 +1,24 @@
+<root>
+	<artists>
+		<artist name="Andy Warhol">
+			<id>1</id>
+			<genre>1</genre>
+		</artist>
+		
+		<artist name="Gustav Klimt">
+			<id>2</id>
+			<genre>3</genre>
+		</artist>
+		
+		<artist name="Henri Rousseau">
+			<id>3</id>
+			<genre>3</genre>
+		</artist>
+		
+		<artist name="Salvador Dalí">
+			<id>4</id>
+			<genre>4</genre>
+		</artist>
+		
+	</artists>
+</root>

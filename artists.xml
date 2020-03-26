@@ -1,11 +1,1 @@
-<root>
-	<artists>
-		<artist1 id="1">
-			<year>1998</year>
-		</artist1>
-		
-		<artist2 id="2">
-			<year>2002</year>
-		</artist2>
-	</artists>
-</root>
+<root><artists><artist name="Andy Warhol"><id>27</id><genre>post impressionism</genre></artist><artist name="Gustav Klimt"><id>28</id><genre>surrealism</genre></artist><artist name="Henri Rousseau"><id>29</id><genre>surrealism</genre></artist><artist name="Salvador Dal&#237;"><id>30</id><genre>post impressionism</genre></artist></artists></root>

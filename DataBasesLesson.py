@@ -39,12 +39,19 @@ cursor = database.cursor()
 #
 #database.commit()
 	
+#### delete all the artists
+cursor.execute('DELETE FROM artists')
+database.commit()	
+	
+	
+#### all the artists
 cursor.execute('select a.name, g.name from artists a join genres g on (a.genre = g.id)')
 result = cursor.fetchall()
-print(result)
-#for a.name, g.name in result:
-#	print(a.name, g.name)
+
+for each in result:
+	print(each)
 	
+
 	
 	
 	
