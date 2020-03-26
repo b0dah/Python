@@ -2,23 +2,53 @@
 
 import cgi
 import html
+import sqlite3
+import os
+
+dbFileName = '/Users/bodah/dev/Python/ArtDB.db'
+dbFileCreated = os.path.exists(dbFileName)
+database = sqlite3.connect(dbFileName)
+cursor = database.cursor()
+
+insertionSuccessful = True
 
 form = cgi .FieldStorage()
-text1 = form.getfirst("Text_1", "not determined")
+artistNameTextFieldValue = form.getfirst("ArtistName", "not determined")
+genreTextFieldValue = form.getfirst("Genre", "not determined")
 
-text1 = html.escape(text1)
-#print(text1)
+artistName = html.escape(artistNameTextFieldValue)
+genre = int(genreTextFieldValue)
+
+#cursor = database.cursor()
+#cursor.execute('select * from artists')
+#result = cursor.fetchall()
+
+
+try:
+	cursor.execute('INSERT INTO artists(name, genre) VALUES ("{}", {})'.format(artistName, genre))
+	database.commit()
+except:
+	insertionSuccessful = False
+	
+insertionResultMessage = ''
+if insertionSuccessful:
+	insertionResultMessage = 'Artist <b>' + artistName + '</b> inserted successfully'
+else:
+	insertionResultMessage = ' Insertion failed'
+
 
 print("Content-type: text/html\n")
 print("""<!DOCTYPE HTML>
 		<html>
 		<head>
-			<meta charset="utf-8">
-			<title>Обработка данных форм</title>
+			<meta charset="UTF-8">
+			<title>Form processing</title>
 		</head>
 		<body>""")
 
-print("<h1>Обработка данных форм!</h1>")
-print("<p>Text_1: {}</p>".format(text1))
+print("<h1>Form processing</h1>")
+print("<p>Outcome: {}</p>".format(insertionResultMessage))
 print("""</body>
 	</html>""")
+	
+

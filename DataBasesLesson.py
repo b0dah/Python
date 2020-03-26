@@ -30,18 +30,14 @@ if not dbFileCreated:
 # TABLES POPULATING
 cursor = database.cursor()
 
-#cursor.execute('insert into genres (name) values ("impress")')
-#
-#cursor.execute('insert into artists (name, genre) values ("petya", 1)')
-#
-#cursor.execute('insert into pictures (title, author) values ("petya", 1)')
-#database.commit()
-for i in range(len(painters)):
-	cursor.execute('insert into genres (name) values ({})'.format(genres[i]))
-	cursor.execute('insert into artists (name, genre) values ({}, {})'.format(painters[i], i+1))
-	cursor.execute('insert into pictures (title, author) values ({}, {})'.format(pictures[i], i+1))
+# как было: cursor.execute('insert into genres (name) values ("impress")')
 
-database.commit()
+#for i in range(len(painters)):
+#	cursor.execute('insert into genres (name) values ({})'.format(genres[i]))
+#	cursor.execute('insert into artists (name, genre) values ({}, {})'.format(painters[i], i+1))
+#	cursor.execute('insert into pictures (title, author) values ({}, {})'.format(pictures[i], i+1))
+#
+#database.commit()
 	
 cursor.execute('select * from artists a join genres g on (a.genre = g.id)')
 result = cursor.fetchall()
