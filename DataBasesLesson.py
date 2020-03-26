@@ -39,7 +39,7 @@ cursor = database.cursor()
 #
 #database.commit()
 	
-cursor.execute('select * from artists a join genres g on (a.genre = g.id)')
+cursor.execute('select a.name, g.name from artists a join genres g on (a.genre = g.id)')
 result = cursor.fetchall()
 print(result)
 #for a.name, g.name in result:

@@ -1,0 +1,11 @@
+<root>
+	<artists>
+		<artist1 id="1">
+			<year>1998</year>
+		</artist1>
+		
+		<artist2 id="2">
+			<year>2002</year>
+		</artist2>
+	</artists>
+</root>
