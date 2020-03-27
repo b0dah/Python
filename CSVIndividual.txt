@@ -1,0 +1,83 @@
+#10. Вывести список слушателей в порядке времени выполнения теста, начиная с самого наименьшего.
+
+import csv
+import datetime
+import re
+
+#def sortByTimeTaken(row):
+#	try:
+#		startTime = datetime.datetime.strptime(row[6][-5:], "%H:%M")
+#		finishTime = datetime.datetime.strptime(row[7][-5:], "%H:%M")
+#		return float((finishTime - startTime).total_seconds())
+#	except:
+#		return 0.0
+		
+#def sortByTimeTaken(row):
+#	try:
+#		if row[8] == 'Затраченное время' or row[8] == '':
+#			return 0
+#		else:
+#			return int(row[8].replace(' мин. ', '').replace(' сек.', '').replace(' ', ''))
+#	except:
+#		return 100000
+		
+def sortByTimeTaken(row):
+	stringToParse = row[8]
+	numbersList = re.findall(r'\d+', stringToParse)
+	if len(numbersList) == 0:
+		return 0
+	else:
+		if re.search('дн', stringToParse):
+			return 60*60*24*int(numbersList[0])
+		if re.search('ч', stringToParse):
+			if len(numbersList) == 1:
+				return 60*60*int(numbersList[0])
+			else:
+				return 60*60*int(numbersList[0]) + 60*int(numbersList[1])
+		if re.search('мин', stringToParse):
+			return 60*int(numbersList[0])
+		if re.search('сек', stringToParse):
+			return 60*int(numbersList[0]) + int(numbersList[1])
+		else:
+#			pass
+			print(row[8])
+		
+		
+
+directory = '/Users/bodah/Downloads/CSV/Файлы/'
+
+table = []
+
+for i in range(19):
+	inputFilename = directory + str(i+1) + '.csv'
+	currentInputFile = open(inputFilename, 'r')
+	for row in csv.reader(currentInputFile):
+		table.append(row)
+#		print(row[6], row[7])
+	currentInputFile.close()
+		
+#table.sort(key = sortByTimeTaken)
+sortedTable = sorted(table, key = sortByTimeTaken)
+for row in sortedTable:
+	print(row[0] + '  ' + row[1] +' –– '+row[8])
+
+
+# EXTRA 
+#inputFile = open('/Users/bodah/Downloads/CSV/Файлы/1.csv' , 'r')
+
+#for filename in os.listdir(directory):
+##	if filename.endswith(".csv"):
+#	currentInputFile = open(filename)
+#	print(filename)
+##		currentInputFile.close()
+
+#time1 = datetime.datetime.strptime('12:32', "%H:%M")
+#time2 = datetime.datetime.strptime('12:33', "%H:%M")
+#
+#print((time2 - time1).total_seconds())
+
+
+
+#sortedTable = sorted(table, key = lambda x: float(x[9]))
+#for i in sortedTable:
+#	print(i[9])
