@@ -1,7 +1,6 @@
 #10. Вывести список слушателей в порядке времени выполнения теста, начиная с самого наименьшего.
 
 import csv
-import datetime
 import re
 
 #def sortByTimeTaken(row):
@@ -26,23 +25,27 @@ def sortByTimeTaken(row):
 	numbersList = re.findall(r'\d+', stringToParse)
 	if len(numbersList) == 0:
 		return 0
-	else:
+	elif len(numbersList) == 1:
 		if re.search('дн', stringToParse):
 			return 60*60*24*int(numbersList[0])
-		if re.search('ч', stringToParse):
-			if len(numbersList) == 1:
-				return 60*60*int(numbersList[0])
-			else:
-				return 60*60*int(numbersList[0]) + 60*int(numbersList[1])
-		if re.search('мин', stringToParse):
+		elif re.search('ч', stringToParse):
+			return 60*60*int(numbersList[0])
+		elif re.search('мин', stringToParse):
 			return 60*int(numbersList[0])
-		if re.search('сек', stringToParse):
+		elif re.search('сек', stringToParse):
+			return int(numbersList[0])
+		else:
+			return None
+	elif len(numbersList) == 2:
+		if re.search('дн', stringToParse):
+			return 60*60*24*int(numbersList[0]) + 60*60*int(numbersList[1])
+		elif re.search('ч', stringToParse):
+			return 60*60*int(numbersList[0]) + 60*int(numbersList[1])
+		elif re.search('мин', stringToParse):
 			return 60*int(numbersList[0]) + int(numbersList[1])
 		else:
-#			pass
-			print(row[8])
-		
-		
+			return None
+
 
 directory = '/Users/bodah/Downloads/CSV/Файлы/'
 
