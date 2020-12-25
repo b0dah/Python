@@ -40,8 +40,8 @@ cursor = database.cursor()
 #database.commit()
 	
 #### delete all the artists
-cursor.execute('DELETE FROM artists')
-database.commit()	
+#cursor.execute('DELETE FROM artists')
+#database.commit()	
 	
 	
 #### all the artists
